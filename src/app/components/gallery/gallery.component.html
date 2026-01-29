@@ -1,0 +1,53 @@
+<section id="gallery" class="gallery">
+  <div class="gallery-header">
+    <span class="section-tag">Esplora</span>
+    <h2 class="section-title">Galleria Fotografica</h2>
+    <p class="section-subtitle">Scopri la bellezza di {{ village().name }} attraverso le nostre immagini</p>
+  </div>
+
+  <div class="gallery-slider" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
+    <div class="slider-container">
+      <div class="slides-wrapper" [style.transform]="'translateX(-' + (currentIndex() * 100) + '%)'">
+        @for (image of village().gallery; track image; let i = $index) {
+          <div class="slide">
+            <img [src]="image" [alt]="village().name + ' - Foto ' + (i + 1)" loading="lazy">
+          </div>
+        }
+      </div>
+    </div>
+
+    <button class="slider-btn prev" (click)="prevSlide()" aria-label="Immagine precedente">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 18l-6-6 6-6"/>
+      </svg>
+    </button>
+
+    <button class="slider-btn next" (click)="nextSlide()" aria-label="Immagine successiva">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 18l6-6-6-6"/>
+      </svg>
+    </button>
+
+    <div class="slider-dots">
+      @for (image of village().gallery; track image; let i = $index) {
+        <button 
+          class="dot" 
+          [class.active]="currentIndex() === i"
+          (click)="goToSlide(i)"
+          [attr.aria-label]="'Vai alla foto ' + (i + 1)">
+        </button>
+      }
+    </div>
+  </div>
+
+  <div class="gallery-thumbnails">
+    @for (image of village().gallery; track image; let i = $index) {
+      <button 
+        class="thumbnail" 
+        [class.active]="currentIndex() === i"
+        (click)="goToSlide(i)">
+        <img [src]="image" [alt]="'Miniatura ' + (i + 1)" loading="lazy">
+      </button>
+    }
+  </div>
+</section>

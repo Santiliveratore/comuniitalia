@@ -1,0 +1,38 @@
+<section id="highlights" class="highlights">
+  <div class="highlights-container">
+    <div class="highlights-header">
+      <span class="section-tag">Da non perdere</span>
+      <h2 class="section-title">Esperienze Imperdibili</h2>
+      <p class="section-subtitle">Le attività e i luoghi più caratteristici da vivere a {{ village().name }}</p>
+    </div>
+
+    <div class="experiences-grid">
+      @for (experience of village().experiences; track experience.id) {
+        <article class="experience-card">
+          <div class="card-image">
+            <img [src]="experience.image" [alt]="experience.title" loading="lazy">
+            <div class="card-overlay">
+              <a [routerLink]="['/experience', experience.id]" class="view-btn">
+                Scopri
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="card-content">
+            
+            <h3 class="card-title">{{ experience.title }}</h3>
+            <p class="card-description">{{ experience.shortDescription }}</p>
+            <a [routerLink]="['/experience', experience.id]" class="card-link">
+              Maggiori informazioni
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

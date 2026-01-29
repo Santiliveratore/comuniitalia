@@ -1,0 +1,21 @@
+<header [class.scrolled]="isScrolled()">
+  <nav class="nav-container">
+    <a class="logo" (click)="scrollToSection('hero')" role="button">
+      <span class="logo-text">{{ village().name }}</span>
+    </a>
+
+    <button class="mobile-menu-btn" (click)="toggleMobileMenu()" [class.active]="isMobileMenuOpen()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links" [class.open]="isMobileMenuOpen()">
+      <li><a (click)="scrollToSection('hero')">Home</a></li>
+      <li><a (click)="scrollToSection('about')">Chi Siamo</a></li>
+      <li><a (click)="scrollToSection('gallery')">Galleria</a></li>
+      <li><a (click)="scrollToSection('highlights')">Esperienze</a></li>
+      <li><a (click)="scrollToSection('footer')">Contatti</a></li>
+    </ul>
+  </nav>
+</header>

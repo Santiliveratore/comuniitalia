@@ -1,0 +1,81 @@
+<app-header></app-header>
+
+<main class="experience-page">
+  @if (experience()) {
+    <section class="experience-hero" [style.backgroundImage]="'url(' + experience()!.image + ')'">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <a routerLink="/" class="back-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Torna a {{ village().name }}
+        </a>
+      
+        <h1 class="experience-title">{{ experience()!.title }}</h1>
+      </div>
+    </section>
+
+    <section class="experience-content">
+      <div class="content-container">
+        <div class="gallery-section">
+          <div class="main-image">
+            <img [src]="getAllImages()[currentImageIndex()]" [alt]="experience()!.title">
+            @if (getAllImages().length > 1) {
+              <button class="nav-btn prev" (click)="prevImage()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M15 18l-6-6 6-6"/>
+                </svg>
+              </button>
+              <button class="nav-btn next" (click)="nextImage()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 18l6-6-6-6"/>
+                </svg>
+              </button>
+            }
+          </div>
+          @if (getAllImages().length > 1) {
+            <div class="thumbnails">
+              @for (image of getAllImages(); track image; let i = $index) {
+                <button 
+                  class="thumb" 
+                  [class.active]="currentImageIndex() === i"
+                  (click)="setCurrentImage(i)">
+                  <img [src]="image" [alt]="'Foto ' + (i + 1)">
+                </button>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="info-section">
+          <div class="description-card">
+            <h2 class="section-title">Descrizione</h2>
+            <p class="description-text">{{ experience()!.fullDescription }}</p>
+            
+            @if (experience()!.link) {
+              <a [href]="experience()!.link" target="_blank" rel="noopener noreferrer" class="info-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+                Maggiori informazioni
+              </a>
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+  } @else {
+    <section class="not-found">
+      <div class="not-found-content">
+        <h1>Esperienza non trovata</h1>
+        <p>L'esperienza che stai cercando non esiste o è stata rimossa.</p>
+        <a routerLink="/" class="back-btn">Torna alla home</a>
+      </div>
+    </section>
+  }
+</main>
+
+<app-footer></app-footer>

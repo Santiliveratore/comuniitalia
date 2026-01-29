@@ -1,0 +1,48 @@
+<section id="hero" class="hero" [style.backgroundImage]="'url(' + village().heroImage + ')'">
+  <div class="hero-overlay"></div>
+  <div class="hero-container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <div class="line"></div>
+        <span>Benvenuti a</span>
+      </div>
+      <h1 class="hero-title">{{ village().name }}</h1>
+      <p class="hero-subtitle">{{ village().region }}, {{ village().country }}</p>
+      <p class="hero-description">{{ village().description }}</p>
+      <button class="hero-btn" (click)="scrollToAbout()">
+        <span>Scopri di più</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 5v14M19 12l-7 7-7-7"/>
+        </svg>
+      </button>
+    </div>
+
+    @if (village().coordinates) {
+      <div class="hero-map">
+        <div class="map-container">
+          <iframe 
+            [src]="getMapUrl()"
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+        <div class="map-label">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span>{{ village().name }}, {{ village().region }}</span>
+        </div>
+      </div>
+    }
+  </div>
+  <div class="hero-scroll-indicator">
+    <div class="mouse">
+      <div class="wheel"></div>
+    </div>
+  </div>
+</section>
