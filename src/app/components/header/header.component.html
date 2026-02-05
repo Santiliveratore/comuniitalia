@@ -1,7 +1,8 @@
 <header [class.scrolled]="isScrolled()">
   <nav class="nav-container">
     <a class="logo" (click)="scrollToSection('hero')" role="button">
-      <span class="logo-text">{{ village().name }}</span>
+      <img class="logo-white" src="LOGO-BLANCO.png" alt="{{ village().name }}">
+      <img class="logo-dark" src="LOGO-AZUL.png" alt="{{ village().name }}">
     </a>
 
     <button class="mobile-menu-btn" (click)="toggleMobileMenu()" [class.active]="isMobileMenuOpen()">

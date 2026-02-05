@@ -10,20 +10,25 @@ export class SubdomainService {
     
     // Para desarrollo local
     if (hostname === 'localhost' || hostname === '127.0.0.1') {
-      // Puedes cambiar esto para probar diferentes pueblos en desarrollo
       const params = new URLSearchParams(window.location.search);
-      return params.get('village') || 'castiglione';
+      return params.get('village') || 'alba';
     }
     
     // Extraer el subdominio del hostname
-    // Formato esperado: pueblo.comunaitalia.com
+    // Formato esperado: pueblo.comuniitalia.com
     const parts = hostname.split('.');
     
+    // Si el hostname es algo como alba.comuniitalia.com
     if (parts.length >= 3) {
       return parts[0].toLowerCase();
     }
     
-    // Si no hay subdominio, retornar el primero por defecto
-    return 'castiglione';
+    // Si es solo comuniitalia.com sin subdominio, mostrar alba por defecto
+    if (hostname.includes('comuniitalia.com') || hostname.includes('github.io')) {
+      return 'alba';
+    }
+    
+    // Fallback
+    return 'alba';
   }
 }

@@ -2,14 +2,27 @@
 <html lang="it">
 <head>
   <meta charset="utf-8">
-  <title>Comuna Italia</title>
+  <title>Alba - Comuni Italia</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Scopri i borghi più belli d'Italia. Informazioni turistiche, cultura, gastronomia ed esperienze uniche.">
+  <meta name="description" content="Scopri Alba, la capitale delle Langhe. Informazioni turistiche, cultura, gastronomia ed esperienze uniche.">
   <meta name="theme-color" content="#8b7355">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="ISO-3.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script>
+    // Script para manejar redirección de SPA en GitHub Pages
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) { 
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
 </head>
 <body>
   <app-root></app-root>

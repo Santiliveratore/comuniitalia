@@ -13,8 +13,14 @@ header {
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
     padding: 0.8rem 2rem;
 
-    .logo-text {
-      color: #2c3e50;
+    .logo-white {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .logo-dark {
+      opacity: 1;
+      visibility: visible;
     }
 
     .nav-links a {
@@ -42,16 +48,30 @@ header {
 .logo {
   cursor: pointer;
   text-decoration: none;
-}
+  position: relative;
+  height: 46px;
+  display: flex;
+  align-items: center;
 
-.logo-text {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #fff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  transition: color 0.3s ease;
-  letter-spacing: 1px;
+  img {
+    height: 100px;
+    width: auto;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .logo-white {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .logo-dark {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
 .nav-links {
